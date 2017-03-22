@@ -1,0 +1,25 @@
+{% extends "layout.jinja2" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <form action="{{ url_for('main_view.settings') }}" method="POST">
+            <input type="text" name="csv_store_path"
+                   value="{% if settings.csv_store_path  %}{{ settings.csv_store_path }} {% endif %}"/>
+            <input type="text" name="device_file_name"
+                   value="{% if settings.device_file_name  %}{{ settings.device_file_name }} {% endif %}"/>
+            <input type="text" name="content_file_name"
+                       value="{% if settings.content_file_name  %}{{ settings.content_file_name }} {% endif %}"/>
+            <input type="text" name="default_csv_delimiter"
+                   value="{% if settings.default_csv_delimiter  %}{{ settings.default_csv_delimiter }} {% endif %}"/>
+            <input type="submit"/>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{{ super() }}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.jinja2" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <table id="dataTable" class="display">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Device name</th>
+                    <th>Date created</th>
+                    <th>Date updated</th>
+                    <th>Expire date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for device_content in device_content %}
+                    <tr data-object-id="{{device_content.id}}">
+                        <td data-th="ID">
+                            {{ device_content.id }}
+                        </td>
+                        <td data-th="Name">
+                            {{ device_content.get_name() }}
+                        </td>
+                        <td data-th="Description">
+                            {{ device_content.get_description() }}
+                        </td>
+                        <td data-th="Device name">
+                            {{ device_content.get_device_name() }}
+                        </td>
+                        <td data-th="Date created">
+                            {{ device_content.get_date_created() }}
+                        </td>
+                        <td data-th="Date updated">
+                            {{ device_content.get_date_updated() }}
+                        </td>
+                        <td data-th="Expire date">
+                            {{ device_content.get_date_expire_date() }}
+                        </td>
+                        <td data-th="Status">
+                            {{ device_content.get_status_name() }}
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{{ super() }}
+
+<script type="text/javascript">
+// datatable activation
+$('#dataTable').DataTable();
+
+</script>
+{% endblock %}

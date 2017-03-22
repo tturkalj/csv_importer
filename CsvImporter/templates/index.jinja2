@@ -1,0 +1,64 @@
+{% extends "layout.jinja2" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <table id="dataTable" class="display">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Code</th>
+                    <th>Date created</th>
+                    <th>Date updated</th>
+                    <th>Expire date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for device in devices %}
+                    <tr data-object-id="{{device.id}}">
+                        <td data-th="ID">
+                            {{ device.id }}
+                        </td>
+                        <td data-th="Name">
+                            {{ device.get_name() }}
+                        </td>
+                        <td data-th="Description">
+                            {{ device.get_description() }}
+                        </td>
+                        <td data-th="Code">
+                            {{ device.get_code() }}
+                        </td>
+                        <td data-th="Date created">
+                            {{ device.get_date_created() }}
+                        </td>
+                        <td data-th="Date updated">
+                            {{ device.get_date_updated() }}
+                        </td>
+                        <td data-th="Expire date">
+                            {{ device.get_date_expire_date() }}
+                        </td>
+                        <td data-th="Status">
+                            {{ device.get_status_name() }}
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{{ super() }}
+
+<script type="text/javascript">
+// datatable activation
+$('#dataTable').DataTable();
+
+</script>
+{% endblock %}
